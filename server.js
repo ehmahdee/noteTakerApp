@@ -46,7 +46,7 @@ app.delete("/api/notes:id", req, res => {
     const idToDelete = parseInt(req.params.id)
     readFileAsync("./Develop/db/db.json", "utf8")
     .then(data => {
-        const notes = [].concat(Json.parse(data))
+        const notes = [].concat(JSON.parse(data))
         const newNotesData = []
         for (let i = 0; i < notes.length; i++) {
             if(idToDelete !== notes[i].id) {

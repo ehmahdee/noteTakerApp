@@ -33,7 +33,7 @@
 
 ## Contributions and Credits
 
-  My discord study group!
+  My discord study group: Michael Huang, Michael Rader, and Patricia Alberto.
 
 ## Questions
 

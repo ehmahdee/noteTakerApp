@@ -19,6 +19,12 @@ app.use(express.json())
 app.use(express.static("./Develop/public"))
 
 //GET
+app.get("/api/notes", req, res => {
+    readFileAsync("./Develop/db/db.json", "utf8")
+    .then(data => {
+        notes = [].concat(JSON.parse(data))
+    })
+})
 
 //POST
 

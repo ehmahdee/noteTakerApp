@@ -19,7 +19,7 @@ app.use(express.json())
 app.use(express.static("./Develop/public"))
 
 //GET
-app.get("/api/notes", req, res => {
+app.get("/api/notes", (req, res) => {
     readFileAsync("./Develop/db/db.json", "utf8")
     .then(data => {
         notes = [].concat(JSON.parse(data))
@@ -27,7 +27,7 @@ app.get("/api/notes", req, res => {
 })
 
 //POST
-app.post("/api/notes", req, res => {
+app.post("/api/notes", (req, res) => {
     const note = req.body
     readFileAsync("./Develop/db/db.json", "utf8")
     .then(data => {
@@ -42,7 +42,7 @@ app.post("/api/notes", req, res => {
 })
 
 //DELETE
-app.delete("/api/notes:id", req, res => {
+app.delete("/api/notes:id", (req, res) => {
     const idToDelete = parseInt(req.params.id)
     readFileAsync("./Develop/db/db.json", "utf8")
     .then(data => {
@@ -63,17 +63,17 @@ app.delete("/api/notes:id", req, res => {
 
 
 //HTML routes
-app.get("/notes", req, res => {
+app.get("/notes", (req, res) => {
     res.sendFile(path.join(__dirname, "./Develop/public/notes.html"))
 })
     
 
-app.get("/", req, res => {
+app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "./Develop/public/index.html"))
 })
     
 
-app.get("*", req, res => {
+app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "./Develop/public/index.html"))
 })
 

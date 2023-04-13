@@ -27,22 +27,37 @@ app.get("/api/notes", req, res => {
 })
 
 //POST
+app.post("/api/notes", req, res => {
+    const note = req.body
+    readFileAsync("./Develop/db/db.json", "utf8")
+    .then(data => {
+        const notes = [].concat(JSON.parse(data))
+        note.id = notes.length + 1
+        notes.push(note)
+        return notes
+    }) .then(notes => {
+        writeFileAsync("./Develop/db/db.json", JSON.stringify(notes))
+        res.json(notes)
+    })
+})
 
 //DELETE
 
 //HTML routes
-app.get("/notes", function(req, res) {
+app.get("/notes", req, res => {
     res.sendFile(path.join(__dirname, "./Develop/public/notes.html"))
 })
+    
 
-app.get("/", function(req, res) {
+app.get("/", req, res => {
+    res.sendFile(path.join(__dirname, "./Develop/public/index.html"))
+})
+    
+
+app.get("*", req, res => {
     res.sendFile(path.join(__dirname, "./Develop/public/index.html"))
 })
 
-app.get("*", function(req, res) {
-    res.sendFile(path.join(__dirname, "./Develop/public/index.html"))
-})
-
-app.listen(PORT, function() {
+app.listen(PORT => {
     console.log(`app listening at: http://localhost:${PORT}`)
 })

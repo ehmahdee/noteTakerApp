@@ -24,6 +24,7 @@ app.get("/api/notes", (req, res) => {
     readFileAsync("./db/db.json", "utf8")
     .then(data => {
         notes = [].concat(JSON.parse(data))
+        res.json(notes)
     })
 })
 
@@ -43,7 +44,7 @@ app.post("/api/notes", (req, res) => {
 })
 
 //DELETE
-app.delete("/api/notes:id", (req, res) => {
+app.delete("/api/notes/:id", (req, res) => {
     const idToDelete = parseInt(req.params.id)
     readFileAsync("./db/db.json", "utf8")
     .then(data => {
